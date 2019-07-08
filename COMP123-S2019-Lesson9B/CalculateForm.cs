@@ -34,13 +34,12 @@ namespace COMP123_S2019_Lesson9B
 
             if (resultCondition)
             {
-                ResultLabel.Text += TheButton.Text;
+                ResultLabel.Text += buttonValue;
             }
             else
             {
                 ResultLabel.Text = "Not a Number(NAN)";
             }
-            ResultLabel.Text = TheButton.Text;
         }
     }
 }
