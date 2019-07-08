@@ -12,14 +12,35 @@ namespace COMP123_S2019_Lesson9B
 {
     public partial class CalculateForm : Form
     {
+        /// <summary>
+        /// this is the constructor for the calculator form
+        /// </summary>
         public CalculateForm()
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// this is the shared event handler for all the calculator buttons - click event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
-        private void button2_Click(object sender, EventArgs e)
+        private void CalculatorButton_Click(object sender, EventArgs e)
         {
+            var TheButton = sender as Button;
 
+            int buttonValue;
+            bool resultCondition = int.TryParse(TheButton.Text, out buttonValue);
+
+            if (resultCondition)
+            {
+                ResultLabel.Text += TheButton.Text;
+            }
+            else
+            {
+                ResultLabel.Text = "Not a Number(NAN)";
+            }
+            ResultLabel.Text = TheButton.Text;
         }
     }
 }
