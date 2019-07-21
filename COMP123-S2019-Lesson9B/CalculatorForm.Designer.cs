@@ -1,6 +1,6 @@
 ﻿namespace COMP123_S2019_Lesson9B
 {
-    partial class CalculateForm
+    partial class CalculatorForm
     {
         /// <summary>
         /// Required designer variable.
@@ -45,6 +45,8 @@
             this.ResultLabel = new System.Windows.Forms.Label();
             this.FourButton = new System.Windows.Forms.Button();
             this.HeightLabel = new System.Windows.Forms.Label();
+            this.WeightLabel = new System.Windows.Forms.Label();
+            this.AgeLabel = new System.Windows.Forms.Label();
             this.CalculatorButtonTableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,6 +82,8 @@
             this.CalculatorButtonTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.CalculatorButtonTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.CalculatorButtonTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.CalculatorButtonTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.CalculatorButtonTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.CalculatorButtonTableLayoutPanel.Size = new System.Drawing.Size(275, 236);
             this.CalculatorButtonTableLayoutPanel.TabIndex = 5;
             // 
@@ -232,6 +236,7 @@
             this.ClearButton.Tag = "clear";
             this.ClearButton.Text = "Clear";
             this.ClearButton.UseVisualStyleBackColor = false;
+            this.ClearButton.Click += new System.EventHandler(this.CalculatorButton_Click);
             // 
             // BackSpaceButton
             // 
@@ -248,6 +253,7 @@
             this.BackSpaceButton.TabIndex = 2;
             this.BackSpaceButton.Tag = "back";
             this.BackSpaceButton.UseVisualStyleBackColor = false;
+            this.BackSpaceButton.Click += new System.EventHandler(this.CalculatorButton_Click);
             // 
             // DoneButton
             // 
@@ -277,6 +283,7 @@
             this.ZeroButton.Name = "ZeroButton";
             this.ZeroButton.Size = new System.Drawing.Size(130, 42);
             this.ZeroButton.TabIndex = 10;
+            this.ZeroButton.Tag = "0";
             this.ZeroButton.Text = "0";
             this.ZeroButton.UseVisualStyleBackColor = false;
             this.ZeroButton.Click += new System.EventHandler(this.CalculatorButton_Click);
@@ -290,6 +297,7 @@
             this.ResultLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.CalculatorButtonTableLayoutPanel.SetColumnSpan(this.ResultLabel, 4);
             this.ResultLabel.Font = new System.Drawing.Font("Arial", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ResultLabel.ForeColor = System.Drawing.Color.Black;
             this.ResultLabel.Location = new System.Drawing.Point(3, 0);
             this.ResultLabel.Name = "ResultLabel";
             this.ResultLabel.Size = new System.Drawing.Size(269, 47);
@@ -318,24 +326,59 @@
             this.HeightLabel.BackColor = System.Drawing.Color.White;
             this.HeightLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.HeightLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HeightLabel.Location = new System.Drawing.Point(33, 39);
+            this.HeightLabel.Location = new System.Drawing.Point(182, 9);
             this.HeightLabel.Name = "HeightLabel";
-            this.HeightLabel.Size = new System.Drawing.Size(110, 38);
+            this.HeightLabel.Size = new System.Drawing.Size(110, 35);
             this.HeightLabel.TabIndex = 6;
-            this.HeightLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.HeightLabel.Click += new System.EventHandler(this.HeightLabel_Click);
+            this.HeightLabel.Tag = "height";
+            this.HeightLabel.Text = "0";
+            this.HeightLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.HeightLabel.Click += new System.EventHandler(this.ActiveLabel_Click);
             // 
-            // CalculateForm
+            // WeightLabel
+            // 
+            this.WeightLabel.BackColor = System.Drawing.Color.White;
+            this.WeightLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.WeightLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WeightLabel.Location = new System.Drawing.Point(182, 64);
+            this.WeightLabel.Name = "WeightLabel";
+            this.WeightLabel.Size = new System.Drawing.Size(110, 35);
+            this.WeightLabel.TabIndex = 6;
+            this.WeightLabel.Tag = "height";
+            this.WeightLabel.Text = "0";
+            this.WeightLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.WeightLabel.Click += new System.EventHandler(this.ActiveLabel_Click);
+            // 
+            // AgeLabel
+            // 
+            this.AgeLabel.BackColor = System.Drawing.Color.White;
+            this.AgeLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.AgeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AgeLabel.Location = new System.Drawing.Point(182, 116);
+            this.AgeLabel.Name = "AgeLabel";
+            this.AgeLabel.Size = new System.Drawing.Size(110, 35);
+            this.AgeLabel.TabIndex = 6;
+            this.AgeLabel.Tag = "height";
+            this.AgeLabel.Text = "0";
+            this.AgeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.AgeLabel.Click += new System.EventHandler(this.ActiveLabel_Click);
+            // 
+            // CalculatorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(304, 441);
+            this.Controls.Add(this.AgeLabel);
+            this.Controls.Add(this.WeightLabel);
             this.Controls.Add(this.HeightLabel);
             this.Controls.Add(this.CalculatorButtonTableLayoutPanel);
-            this.Name = "CalculateForm";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.Name = "CalculatorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calculator";
-            this.Load += new System.EventHandler(this.CalculateForm_Load);
+            this.Load += new System.EventHandler(this.CalculatorForm_Load);
+            this.Click += new System.EventHandler(this.CalculatorForm_Click);
             this.CalculatorButtonTableLayoutPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -360,6 +403,8 @@
         private System.Windows.Forms.Button ClearButton;
         private System.Windows.Forms.Button BackSpaceButton;
         private System.Windows.Forms.Label HeightLabel;
+        private System.Windows.Forms.Label WeightLabel;
+        private System.Windows.Forms.Label AgeLabel;
     }
 }
 
