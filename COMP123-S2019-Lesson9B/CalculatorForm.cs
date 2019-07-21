@@ -18,6 +18,7 @@ namespace COMP123_S2019_Lesson9B
         public float outputValue { get; set; }
         public Label ActiveLabel { get; set; }
 
+        public Animation animationState;
 
         /// <summary>
         /// this is the constructor for the CalculatorForm
@@ -39,6 +40,8 @@ namespace COMP123_S2019_Lesson9B
             NumericKeyboardPanel.Visible = false;
 
             Size = new Size(320, 480);
+
+            animationState = Animation.IDLE;
         }
 
         /// <summary>
@@ -49,12 +52,15 @@ namespace COMP123_S2019_Lesson9B
         private void CalculatorForm_Click(object sender, EventArgs e)
         {
             clearNumericKeyboard();
-            ActiveLabel = null;
             if (ActiveLabel != null)
             {
                 ActiveLabel.BackColor = Color.White;
             }
-            NumericKeyboardPanel.Visible = false;
+
+            ActiveLabel = null;
+
+            animationState = Animation.DOWN;
+            AnimationTimer.Enabled = true;
         }
 
         /// <summary>
@@ -148,6 +154,9 @@ namespace COMP123_S2019_Lesson9B
 
             ActiveLabel.BackColor = Color.White;
             ActiveLabel = null;
+
+            animationState = Animation.DOWN;
+            AnimationTimer.Enabled = true;
         }
 
         /// <summary>
@@ -208,12 +217,29 @@ namespace COMP123_S2019_Lesson9B
             NumericKeyboardPanel.BringToFront();
 
             AnimationTimer.Enabled = true;
+            animationState = Animation.UP;
         }
         /// this is the event handler for AnimationTimer tick event
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void AnimationTimer_Tick(object sender, EventArgs e)
+        {
+            switch(animationState)
+            {
+                case Animation.IDLE:
+                    break;
+                case Animation.UP:
+                    MoveNumericKeyboardUp();
+                    break;
+                case Animation.DOWN:
+                    MoveNumericKeyboardDown();
+                    break;
+            }
+            
+        }
+
+        private void MoveNumericKeyboardUp()
         {
             var currentLocation = NumericKeyboardPanel.Location;
 
@@ -227,6 +253,26 @@ namespace COMP123_S2019_Lesson9B
             {
                 NumericKeyboardPanel.Location = new Point(currentLocation.X, ActiveLabel.Location.Y + 55);
                 AnimationTimer.Enabled = false;
+                animationState = Animation.IDLE;
+            }
+        }
+
+        private void MoveNumericKeyboardDown()
+        {
+            var currentLocation = NumericKeyboardPanel.Location;
+
+            // increment current location of Numeric Keyboard by 20
+            currentLocation = new Point(currentLocation.X, currentLocation.Y + 20);
+
+            NumericKeyboardPanel.Location = currentLocation;
+
+            // compare NumericKeyboard current location with the Active Label
+            if (currentLocation.Y >= 466)
+            {
+                NumericKeyboardPanel.Location = new Point(currentLocation.X, 466);
+                AnimationTimer.Enabled = false;
+                animationState = Animation.IDLE;
+                NumericKeyboardPanel.Visible = false;
             }
         }
     }

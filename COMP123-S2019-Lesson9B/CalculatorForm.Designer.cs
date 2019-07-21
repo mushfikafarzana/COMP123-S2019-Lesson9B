@@ -356,7 +356,7 @@
             this.AgeLabel.BackColor = System.Drawing.Color.White;
             this.AgeLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.AgeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AgeLabel.Location = new System.Drawing.Point(175, 120);
+            this.AgeLabel.Location = new System.Drawing.Point(175, 124);
             this.AgeLabel.Name = "AgeLabel";
             this.AgeLabel.Size = new System.Drawing.Size(117, 44);
             this.AgeLabel.TabIndex = 6;
